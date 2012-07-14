@@ -7,6 +7,32 @@ body {
   background-color: #ffffff;
 }
 
+input {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 24px;
+  text-align: center;
+}
+
+select {
+/*  background: transparent;
+  -webkit-appearance: none;
+  border-width: 0;*/
+  font-size: 24px;
+/*  color: #fff;*/
+/*  width: 130px;*/
+}
+
+div.rsvp-caption {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+div.select-wrapper {
+  float: left;
+  width: 110px;
+  overflow: hidden;
+}
+
 a {
   color: #0088cc;
   text-decoration: none;
@@ -85,7 +111,7 @@ div.conj {
 
 .item1of3 {
   left: 0%;
-  width: 27%
+  width: 27%;
 }
 
 .conj1of2 {
@@ -95,7 +121,7 @@ div.conj {
 
 .item2of3 {
   left: 36.5%;
-  width: 27%
+  width: 27%;
 }
 
 .conj2of2 {
@@ -105,12 +131,12 @@ div.conj {
 
 .item3of3 {
   left: 73%;
-  width: 27%
+  width: 27%;
 }
 
 .item1of2 {
   left: 0%;
-  width: 45.25%
+  width: 45.25%;
 }
 
 .conj1of1 {
@@ -120,7 +146,12 @@ div.conj {
 
 .item2of2 {
   left: 54.75%;
-  width: 45.25%
+  width: 45.25%;
+}
+
+.item1of1 {
+  left: 27.375%;
+  width: 45.25%;
 }
 
 span.info {
@@ -131,31 +162,31 @@ span.info {
 }
 
 #raspy {
-  background-image: url('raspy.jpg');
+  background-image: url('img/raspy.jpg');
 }
 
 #malex {
-  background-image: url('malley.jpg');
+  background-image: url('img/malley.jpg');
 }
 
 #bailey {
-  background-image: url('bayles.jpg');
+  background-image: url('img/bayles.jpg');
 }
 
 #stas {
-  background-image: url('stas2.jpg');
+  background-image: url('img/stas2.jpg');
 }
 
 #andrea {
-  background-image: url('andrea.jpg');
+  background-image: url('img/andrea.jpg');
 }
 
 #date {
-  background-image: url('november_2012.png');
+  background-image: url('img/november_2012.png');
 }
 
 #winery {
-  background-image: url('silvanridge.jpg');
+  background-image: url('img/silvanridge.jpg');
 }
 
 #eugene {
@@ -163,21 +194,80 @@ span.info {
 }
 
 #equality {
-  background-image: url('equality.png');
+  background-image: url('img/equality.png');
 }
 
 #hrc {
-  background-image: url('hrc.png');
+  background-image: url('img/hrc.png');
 }
 
 #rooms {
-  background-image: url('rooms.jpg');
+  background-image: url('img/rooms.jpg');
 }
 
 #hotel-info {
-  background-image: url('inn.jpg');
+  background-image: url('img/inn.jpg');
 }
 
 #hotel-map {
   background-image: url('http://maps.googleapis.com/maps/api/staticmap?center=44.06583890,-123.1026280&zoom=13&size=400x300&maptype=road&sensor=false&markers=size:small%7Ccolor:red%7C44.06583890,-123.1026280');
+}
+
+.yes {
+  background-image: url('img/yes-gray.jpg');
+  cursor: pointer;
+}
+
+.yes:hover {
+  background-image: url('img/yes.jpg');
+}
+
+.yes-selected {
+  background-image: url('img/yes.jpg');
+}
+
+.yes-unselected {
+  background-image: url('img/yes-gray.jpg');
+}
+
+.no {
+  background-image: url('img/no-gray.jpg');
+  cursor: pointer;
+}
+
+.no:hover {
+  background-image: url('img/no.jpg');
+}
+
+.no-selected {
+  background-image: url('img/no.jpg');
+}
+
+.no-unselected {
+  background-image: url('img/no-gray.jpg');
+}
+
+#count {
+  background-image: url('img/count.jpg');
+}
+
+#name {
+  background-image: url('img/sad.png');
+}
+
+#form-submit {
+  background-image: url('img/thumbs-up.png');
+}
+
+.linky {
+  cursor: pointer;
+}
+
+.arrow {
+  font-size: 16px;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  height: 20px;
+  margin-top: -10px;
 }

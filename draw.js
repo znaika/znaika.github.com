@@ -1,5 +1,98 @@
 $(document).ready(function() {
 
+  rsvp_main_info = '<div class="info-row"><span id="rsvp-main" class="info">Please enter your party\'s names and food preferences:</span></div>'
+  rsvp_main_row = '<div class="row"><div class="item item1of2"><div class="caption"><input type="text" size="12"></input></div></div><div class="choose item item2of2" style="background-color:#fff"><div class="caption"><div class="select-wrapper"><select><option value="choose">Choose</option><option value="meaty">Meaty</option><option value="veggie">Veggie</option><option value="vegan">Vegan</option><option value="kosher">Kosher</option><option value="other">Other</option></select><div class="arrow">&#9660;</div></div></div></div></div>'
+
+  scroll_to_bottom = function() {
+    $('html, body').animate({ 
+       scrollTop: $(document).height()-$(window).height()}, 
+       1400, 
+       "easeOutQuint"
+    );
+  }
+
+  $('#yes').click(function() {
+    $('#yes').removeClass('yes').addClass('yes-selected').off('click');
+    $('#no').removeClass('no').addClass('no-unselected').off('click');
+    $('#rsvp-yes-wrapper').css('display', 'block');
+
+    $('#count-form').submit(function() {
+      value = $('#count-form input').val()
+      num_guests = parseInt(value)
+
+      if (isNaN(num_guests) || num_guests < 1 || num_guests > 4) {
+        $('#count-form input').val('');
+        alert('Please enter a reasonable number of guests.');
+        return false
+      }
+
+      guests = (num_guests==1 ? ' guest' : ' guests')
+      $('#count-form .caption').text(value + guests + '! Ah-ah-ah!');
+
+      for(var i=1; i<=num_guests; i++)
+        $('#main-row-'+i).css('display', 'table-row');
+
+      $('#rsvp-main-wrapper').css('display', 'block');
+      scroll_to_bottom();
+
+      var main_form_submit = function () {
+        $('#hf-attending').val('yes');
+        lines = []
+        for(var i=1; i<=num_guests; i++) {
+          name = $('#form-name-'+i).val();
+          meal = $('#form-meal-'+i).val();
+
+          if (name == '') {
+            alert('Please fill out all the names.');
+            return false
+          }
+
+          $('#hf-name-'+i).val(name);
+          $('#hf-meal-'+i).val(meal);
+          lines.push((meal=='meaty' ? 'Meat' : 'Veggies') + ' for ' + name + '!');
+        }
+
+        $('#rsvp-main-table').html(lines.join('<br/>'));
+        $('#submit-caption').html("Awesome! We'll see you in November!");
+        $('#form-submit').removeClass('linky').off('click');
+
+        var e = document.createEvent('MouseEvents');
+        e.initEvent('click', true, false);
+        $('#hf-submit').get(0).dispatchEvent(e);
+
+        return false
+      }
+
+      $('#form-submit').click(main_form_submit);
+      $('#main-form').submit(main_form_submit);
+
+      return false
+    });
+
+    scroll_to_bottom();
+  });
+
+  $('#no').click(function() {
+    $('#yes').removeClass('yes').addClass('yes-unselected').off('click');
+    $('#no').removeClass('no').addClass('no-selected').off('click');
+    $('#rsvp-no-wrapper').css('display', 'block');
+
+    $('#name-form').submit(function() {
+      name = $('#name-input').val();
+      $('#name-caption').text("We'll miss you, " + name + "!");
+      $('#hf-attending').val('no');
+      $('#hf-name-1').val(name);
+
+      var e = document.createEvent('MouseEvents');
+      e.initEvent('click', true, false);
+      $('#hf-submit').get(0).dispatchEvent(e);
+
+      return false;
+    });
+
+    scroll_to_bottom();
+  });
+
   var round = function(num) {
     return Math.round(num - 0.5) + 0.5;
   }
@@ -105,6 +198,12 @@ $(document).ready(function() {
       info_to_item(info1, $('#rooms'))
       ctx.lineTo(get_x(map, 0.5), get_y(map, 0.5) + 3)
       ctx.stroke();
+    }
+
+    var draw_rsvp = function(ctx, get_x, get_y, info_to_item, item_to_info) {
+      question = $('rsvp-attend');
+      yes = $('yes');
+      no = $('no');
     }
 
     prepare_and_draw($('#announcement'), draw_announcement);
